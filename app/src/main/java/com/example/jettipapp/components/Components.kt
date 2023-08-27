@@ -34,25 +34,24 @@ fun InputField(
     imeAction: ImeAction = ImeAction.Next,
     onAction: KeyboardActions = KeyboardActions.Default
 ) {
+   OutlinedTextField(value = valueState.value,
+       onValueChange = {valueState.value = it},
+       label = { Text(text = labelId)},
+       leadingIcon = { Icon(imageVector = Icons.Rounded.AttachMoney, contentDescription = "Money Icon")},
+       singleLine = isSingleLine,
+       enabled = enable,
+       modifier = modifier,
+       textStyle = TextStyle(fontSize = 18.sp, color = MaterialTheme.colorScheme.onBackground),
+       keyboardOptions = KeyboardOptions(keyboardType = keyboardType, imeAction = imeAction),
+       keyboardActions = onAction
+       )
 
-    OutlinedTextField(
-        value = valueState.value, onValueChange = { valueState.value = it },
-        label = { Text(text = labelId) },
-        enable = enable,
-        leadingIcon = {
-            Icon(
-                imageVector = Icons.Rounded.AttachMoney,
-                contentDescription = "Money Icon"
-            )
-        },
-        singleLine = isSingleLine,
-        textStyle = TextStyle(fontSize = 18.sp,
-            color = MaterialTheme.colorScheme.onBackground),
-        modifier = modifier.padding(bottom = 10.dp, start = 10.dp, end = 10.dp),
 
-        keyboardOptions = KeyboardOptions(keyboardType = keyboardType, imeAction = imeAction),
-        keyboardActions = onAction
 
-        )
+
+
+
+
 
 }
+
