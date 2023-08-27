@@ -16,19 +16,17 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-
-
-
+import com.google.firebase.annotations.concurrent.Background
 
 
 val IconButtonSizeModifier = Modifier.size(40.dp)
 @Composable
 fun RoundIconButton(
-    modifier: Modifier,
+    modifier: Modifier = Modifier,
     imageVector: ImageVector,
     onClick: () -> Unit,
     tint: Color = Color.Black.copy(alpha = 0.8f),
-    backgroundColor: Color= MaterialTheme.colorScheme.onBackground,
+    backgroundColor: Color= MaterialTheme.colorScheme.background,
     elevation: Dp = 4.dp
 ) {
     Card(modifier = modifier

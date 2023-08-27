@@ -20,6 +20,9 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.CornerSize
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.Remove
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -37,6 +40,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.jettipapp.components.InputField
 import com.example.jettipapp.ui.theme.JetTipAppTheme
+import com.example.jettipapp.widgets.RoundIconButton
 import org.intellij.lang.annotations.JdkConstants.HorizontalAlignment
 
 class MainActivity : ComponentActivity() {
@@ -104,23 +108,21 @@ fun TopHeader(totalPerPerson: Double = 133.0) {
 @Preview
 @Composable
 fun MainContent() {
-    BillForm(){billAmt ->
+    BillForm() { billAmt ->
         val TAG = "from BillForm"
         Log.d(TAG, "MainContent: ${billAmt.toInt() * 100}")
-        
+
     }
 
 }
 
 
-
-
-
-
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
-fun BillForm(modifier: Modifier = Modifier,
-             onValChange: (String) -> Unit = {}) {
+fun BillForm(
+    modifier: Modifier = Modifier,
+    onValChange: (String) -> Unit = {}
+) {
     val totalBillState = remember {
         mutableStateOf("")
     }
@@ -136,9 +138,11 @@ fun BillForm(modifier: Modifier = Modifier,
         shape = RoundedCornerShape(corner = CornerSize(8.dp)),
         border = BorderStroke(width = 1.dp, color = Color.LightGray)
     ) {
-        Column(modifier = Modifier.padding(6.dp),
+        Column(
+            modifier = Modifier.padding(6.dp),
             verticalArrangement = Arrangement.Top,
-            horizontalAlignment = Alignment.Start) {
+            horizontalAlignment = Alignment.Start
+        ) {
             InputField(
                 valueState = totalBillState,
                 labelId = "Enter Bill",
@@ -150,23 +154,35 @@ fun BillForm(modifier: Modifier = Modifier,
 
                     keyboardController?.hide()
                 })
-            if (validState){
-                Row(modifier = Modifier.padding(3.dp),
-                    horizontalArrangement = Arrangement.Start) {
-                    Text(text = "Split",
+            if (validState) {
+                Row(
+                    modifier = Modifier.padding(3.dp),
+                    horizontalArrangement = Arrangement.Start
+                )
+                {
+                    Text(
+                        text = "Split",
                         modifier = Modifier.align(
                             alignment = Alignment.CenterVertically
-                        ))
+                        )
+                    )
                     Spacer(modifier = Modifier.width(120.dp))
-                    Row(modifier = Modifier.padding(horizontal = 3.dp),
-                        horizontalArrangement = Arrangement.End) {
+                    Row(
+                        modifier = Modifier.padding(horizontal = 3.dp),
+                        horizontalArrangement = Arrangement.End
+                    ) {
+                        RoundIconButton(imageVector = Icons.Default.Remove,
+                            onClick = { /*TODO*/ })
+                        RoundIconButton(
+                            imageVector = Icons.Default.Add,
+                            onClick = { /*TODO*/ })
 
                     }
 
                 }
 
-            }else{
-                Box( ){}
+            } else {
+                Box() {}
             }
 
 
@@ -175,8 +191,6 @@ fun BillForm(modifier: Modifier = Modifier,
 
     }
 }
-
-
 
 
 //@Preview(showBackground = true)
