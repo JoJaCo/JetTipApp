@@ -11,6 +11,7 @@ import androidx.compose.material3.CardElevation
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
@@ -20,13 +21,14 @@ import com.google.firebase.annotations.concurrent.Background
 
 
 val IconButtonSizeModifier = Modifier.size(40.dp)
+
 @Composable
 fun RoundIconButton(
     modifier: Modifier = Modifier,
     imageVector: ImageVector,
     onClick: () -> Unit,
     tint: Color = Color.Black.copy(alpha = 0.8f),
-    backgroundColor: Color= MaterialTheme.colorScheme.background,
+    backgroundColor: Color = MaterialTheme.colorScheme.background,
     elevation: Dp = 4.dp
 ) {
     Card(modifier = modifier
@@ -37,9 +39,12 @@ fun RoundIconButton(
         colors = CardDefaults.cardColors(containerColor = backgroundColor),
         elevation = CardDefaults.cardElevation(defaultElevation = elevation)) {
 
-        Icon(imageVector = imageVector, contentDescription = "Plus of minus icon",
+        Icon(
+            modifier = modifier.align(alignment = Alignment.CenterHorizontally),
+            imageVector = imageVector,
+            contentDescription = "Plus or minus icon",
             tint = tint,
-            )
+        )
 
     }
 
